@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>A Little Place for You ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap');
+:root{
+ --wine:#691b3a;--rose:#c63d68;--blush:#f7d5dc;--cream:#fff8f5;
+ --ink:#3f2030;--soft:#8b6472;--glass:rgba(255,255,255,.64);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;color:var(--ink);font-family:Inter,system-ui,sans-serif;
+ background:
+ radial-gradient(circle at 10% 8%,rgba(255,130,160,.35),transparent 25%),
+ radial-gradient(circle at 92% 18%,rgba(190,135,215,.25),transparent 25%),
+ linear-gradient(135deg,#f4d5d8,#fff3ef 45%,#efd1dc);
+ overflow-x:hidden;
+}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(#7d2948 1px,transparent 1px);background-size:18px 18px}
+nav{
+ position:fixed;top:0;left:0;right:0;z-index:20;padding:14px 5%;
+ display:flex;justify-content:space-between;align-items:center;
+ background:rgba(255,248,245,.58);backdrop-filter:blur(18px);
+ border-bottom:1px solid rgba(105,27,58,.08)
+}
+.logo{font-family:Caveat;font-size:28px;font-weight:700;color:var(--wine)}
+nav a{color:var(--wine);text-decoration:none;margin-left:18px;font-size:12px}
+.wrap{max-width:1200px;margin:auto;padding:100px 24px 50px}
+.hero{
+ min-height:85vh;display:grid;place-items:center;text-align:center;
+ position:relative;border-radius:38px;padding:60px 25px;overflow:hidden;
+ background:linear-gradient(145deg,rgba(255,255,255,.58),rgba(255,225,232,.48));
+ border:1px solid rgba(255,255,255,.85);box-shadow:0 30px 90px rgba(99,30,58,.14)
+}
+.hero:before,.hero:after{content:"♡";position:absolute;font-family:Caveat;color:rgba(198,61,104,.16);font-size:220px}
+.hero:before{left:-35px;top:-65px;transform:rotate(-15deg)}.hero:after{right:-40px;bottom:-80px;transform:rotate(18deg)}
+.eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--rose)}
+h1{font-family:'DM Serif Display';font-weight:400;font-size:clamp(55px,10vw,115px);line-height:.9;margin:18px 0 12px;color:#52142e}
+.script{font-family:Caveat;font-size:34px;color:var(--rose)}
+.hero p{max-width:650px;margin:20px auto;color:var(--soft);line-height:1.8}
+.btn{
+ border:0;border-radius:999px;padding:14px 24px;background:linear-gradient(135deg,#b52f5d,#7a315e);
+ color:white;cursor:pointer;box-shadow:0 12px 30px rgba(126,40,75,.2);font-weight:600
+}
+.scroll{position:absolute;bottom:24px;font-family:Caveat;color:var(--soft);font-size:20px}
+.section{margin-top:28px}
+.panel{
+ background:var(--glass);border:1px solid rgba(255,255,255,.85);border-radius:30px;
+ padding:28px;box-shadow:0 20px 65px rgba(99,30,58,.1);backdrop-filter:blur(12px)
+}
+.title{text-align:center;font-family:'DM Serif Display';font-size:31px;color:var(--wine);margin-bottom:8px}
+.sub{text-align:center;color:var(--soft);font-size:13px;margin-bottom:22px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.stat{padding:20px;border-radius:22px;background:rgba(255,250,248,.7);border:1px solid #efd2d8;text-align:center}
+.icon{font-size:28px}.label{font-size:11px;color:var(--soft);margin-top:5px}.value{font-family:Caveat;font-size:32px;color:var(--rose);font-weight:700}
+.chartwrap{height:330px}.bargrid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.subject{background:rgba(255,250,248,.72);border:1px solid #efd2d8;border-radius:22px;padding:20px}
+.subject h3{font-family:'DM Serif Display';font-size:24px;margin:6px 0;color:var(--wine)}
+.subject .emoji{font-size:34px}.meter{height:9px;border-radius:99px;background:#efdde1;overflow:hidden;margin-top:13px}.meter i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#d55378,#80355d)}
+.inputrow{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:18px 0}.inputrow input,.inputrow select{padding:12px 14px;border:1px solid #e4bdc8;border-radius:13px;background:#fff9f7;color:var(--ink)}
+.reveal{
+ position:relative;overflow:hidden;cursor:pointer;text-align:center;padding:48px 25px;
+ background:linear-gradient(145deg,#7d2447,#4c1835);color:white;border-radius:30px;
+ box-shadow:0 25px 70px rgba(82,20,46,.25)
+}
+.reveal .lock{font-size:45px}.reveal h2{font-family:'DM Serif Display';font-size:38px;font-weight:400;margin:12px}.reveal p{opacity:.75}
+.secret{display:none;max-width:760px;margin:auto}.secret.show{display:block;animation:appear .7s ease}
+@keyframes appear{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+.letter{
+ background:#fff8e9;color:#553044;padding:35px 30px;border-radius:6px;
+ box-shadow:0 15px 35px rgba(0,0,0,.15);font-family:Caveat;font-size:25px;line-height:1.55;
+ transform:rotate(-1deg);position:relative
+}
+.letter:before{content:"♡";position:absolute;right:20px;top:8px;color:#c63d68;font-size:35px}
+.signature{margin-top:22px;text-align:right;color:#9b365a}
+.hiddenhint{text-align:center;color:#e8b6c7;font-family:Caveat;font-size:21px;margin-top:15px}
+.recent{display:grid;gap:8px}.row{display:flex;justify-content:space-between;padding:13px 15px;border-radius:14px;background:rgba(255,248,246,.7);border:1px solid #f0d9dd;font-size:13px}.row span{color:var(--soft)}
+footer{text-align:center;font-family:Caveat;font-size:24px;color:#865368;padding:38px 0}
+.float{position:fixed;bottom:-30px;z-index:3;pointer-events:none;color:#c63d68;animation:float 7s linear forwards}
+@keyframes float{to{transform:translateY(-110vh) rotate(300deg);opacity:0}}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.bargrid{grid-template-columns:1fr}.hero{min-height:78vh}.wrap{padding-left:12px;padding-right:12px}nav a{display:none}}
+@media(max-width:450px){.stats{grid-template-columns:1fr 1fr}.value{font-size:28px}.panel{padding:20px}}
+</style>
+</head>
+<body>
+<nav><div class="logo">A little place for you ♡</div><div><a href="#progress">Progress</a><a href="#subjects">Subjects</a><a href="#secret">♡</a></div></nav>
+
+<div class="wrap">
+<section class="hero">
+<div>
+<div class="eyebrow">Biology · Physics · Chemistry</div>
+<div class="script">For the girl who keeps trying...</div>
+<h1>Your little<br>study world ♡</h1>
+<p>Every hour you study is one tiny step toward the future you dream about. I wanted to make a little place where those steps could be remembered.</p>
+<button class="btn" onclick="document.getElementById('progress').scrollIntoView()">See your journey ♡</button>
+</div>
+<div class="scroll">scroll slowly ↓</div>
+</section>
+
+<section id="progress" class="section">
+<div class="panel">
+<div class="title">♡ Your Study Journey ♡</div>
+<div class="sub">A week of effort is still a beautiful thing, even on the difficult days.</div>
+<div class="stats">
+<div class="stat"><div class="icon">⏰</div><div class="label">TOTAL STUDY</div><div class="value">58h</div></div>
+<div class="stat"><div class="icon">📚</div><div class="label">AVERAGE / DAY</div><div class="value">8h 17m</div></div>
+<div class="stat"><div class="icon">🏆</div><div class="label">BEST DAY</div><div class="value">11h</div></div>
+<div class="stat"><div class="icon">🔥</div><div class="label">STREAK</div><div class="value">7 days</div></div>
+</div>
+<div class="chartwrap"><canvas id="studyChart"></canvas></div>
+</div>
+</section>
+
+<section id="subjects" class="section">
+<div class="panel">
+<div class="title">♡ Three Little Worlds ♡</div>
+<div class="sub">Your time, your progress, your dreams.</div>
+<div class="bargrid">
+<div class="subject"><div class="emoji">🧬</div><h3>Biology</h3><div style="color:#8b6472;font-size:13px">Study time · 18.5h</div><div style="margin-top:8px;color:#b42f58;font-weight:600">88% mark</div><div class="meter"><i style="width:88%"></i></div></div>
+<div class="subject"><div class="emoji">⚛️</div><h3>Physics</h3><div style="color:#8b6472;font-size:13px">Study time · 15.2h</div><div style="margin-top:8px;color:#b42f58;font-weight:600">79% mark</div><div class="meter"><i style="width:79%"></i></div></div>
+<div class="subject"><div class="emoji">🧪</div><h3>Chemistry</h3><div style="color:#8b6472;font-size:13px">Study time · 17.1h</div><div style="margin-top:8px;color:#b42f58;font-weight:600">87% mark</div><div class="meter"><i style="width:87%"></i></div></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="panel">
+<div class="title">♡ Marks & Progress ♡</div>
+<div class="chartwrap"><canvas id="marksChart"></canvas></div>
+</div>
+</section>
+
+<section class="section">
+<div class="panel">
+<div class="title">♡ Add a little more to your story ♡</div>
+<div class="sub">Add today's study time. It stays on this device for now.</div>
+<div class="inputrow">
+<select id="subject"><option>Biology</option><option>Physics</option><option>Chemistry</option></select>
+<input id="hours" type="number" min="0" step=".5" placeholder="Hours studied">
+<button class="btn" onclick="addStudy()">Save today's effort ♡</button>
+</div>
+<div id="recent" class="recent">
+<div class="row"><b>Biology</b><span>2h 30m · Today</span></div>
+<div class="row"><b>Physics</b><span>1h 45m · Today</span></div>
+<div class="row"><b>Chemistry</b><span>2h 00m · Yesterday</span></div>
+</div>
+</div>
+</section>
+
+<section id="secret" class="section">
+<div class="reveal" onclick="revealSecret()">
+<div class="lock" id="lock">🔒</div>
+<h2 id="revealTitle">There is something hidden here...</h2>
+<p id="revealHint">Maybe it's only meant for one person. Tap to open ♡</p>
+<div id="secretLetter" class="secret">
+<div class="letter">
+If you ever wonder why someone quietly cares about every little step you take...<br><br>
+Maybe it's because watching you work toward your dreams makes you admire you a little more every day.<br><br>
+I don't want this little place to be about pressure or perfect marks. I just want it to remind you that someone is quietly cheering for you — especially on the days when you don't feel like you are doing enough.<br><br>
+And maybe... somewhere between all these study hours, there is a secret little reason this website was made just for you. ♡
+<div class="signature">— someone who cares more than he says ♡</div>
+</div>
+</div>
+</div>
+<div class="hiddenhint">P.S. The secret wasn't the website. It was the reason behind it. ♡</div>
+</section>
+
+<footer>For your dreams, your future, and maybe... something a little more. ♡</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const days=["Aug 9","Aug 10","Aug 11","Aug 12","Aug 13","Aug 14","Aug 15"];
+const hours=[9,9.5,10.5,6,8,4,11];
+new Chart(document.getElementById("studyChart"),{
+ type:"line",data:{labels:days,datasets:[{label:"Study hours",data:hours,borderColor:"#b92d55",backgroundColor:"rgba(198,61,104,.15)",fill:true,tension:.38,pointRadius:7,pointBackgroundColor:"#fff8f5",pointBorderColor:"#b92d55",pointBorderWidth:3}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:14,ticks:{color:"#815565"},grid:{color:"rgba(120,50,70,.1)"}},x:{ticks:{color:"#815565"},grid:{display:false}}}}
+});
+new Chart(document.getElementById("marksChart"),{
+ type:"bar",data:{labels:["Biology","Physics","Chemistry"],datasets:[{label:"Current mark",data:[88,79,87],backgroundColor:["#d95878","#9b72c9","#d99b70"],borderRadius:12,barThickness:45}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{color:"#815565"},grid:{color:"rgba(120,50,70,.1)"}},x:{ticks:{color:"#815565"},grid:{display:false}}}}
+});
+let sessions=JSON.parse(localStorage.getItem("secretStudy")||"[]");
+function addStudy(){const s=document.getElementById("subject").value,h=Number(document.getElementById("hours").value);if(!h)return alert("Add your study time first ♡");sessions.push({s,h});localStorage.setItem("secretStudy",JSON.stringify(sessions));document.getElementById("recent").insertAdjacentHTML("afterbegin",`<div class="row"><b>${s}</b><span>${h}h · Today</span></div>`);document.getElementById("hours").value=""}
+function revealSecret(){const l=document.getElementById("secretLetter");l.classList.toggle("show");document.getElementById("lock").textContent=l.classList.contains("show")?"🔓":"🔒";document.getElementById("revealTitle").textContent=l.classList.contains("show")?"For your eyes only ♡":"There is something hidden here...";document.getElementById("revealHint").textContent=l.classList.contains("show")?"A little truth, hidden inside all these numbers.":"Maybe it's only meant for one person. Tap to open ♡";}
+function floatHeart(){const e=document.createElement("div");e.className="float";e.textContent=["♡","♥","✦","❀"][Math.floor(Math.random()*4)];e.style.left=Math.random()*100+"vw";e.style.fontSize=14+Math.random()*18+"px";e.style.animationDuration=5+Math.random()*5+"s";document.body.appendChild(e);setTimeout(()=>e.remove(),10000)}
+setInterval(floatHeart,1100);
+</script>
+</body>
+</html>
